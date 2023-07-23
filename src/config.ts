@@ -1,6 +1,7 @@
 import { getDatabase, ref, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { nanoid } from "nanoid";
+import { format } from "date-fns";
 
 interface TodoType {
   title: string;
@@ -8,7 +9,7 @@ interface TodoType {
   done?: boolean;
   date?: Date;
   priority?: 1 | 2 | 3 | 4;
-  todoID?: Date;
+  todoID?: string;
 }
 
 const firebaseConfig = {
@@ -24,10 +25,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 function addTodo({
-  todoID = new Date(),
+  todoID = nanoid(),
   done = false,
   title,
   date = new Date(),
@@ -39,7 +39,7 @@ function addTodo({
     title,
     description,
     done,
-    date: date.getDate(),
+    date: format(date, "yyyy.MM.dd"),
     priority,
   });
 }
