@@ -24,9 +24,11 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
+export const todoRef = ref(db, "todos");
 
 export const fetchAllTodos = async () => {
-  const todoRef = ref(db, "todos");
   const snapshot = await get(todoRef);
   return snapshot.val();
 };
+
+// 리스트가 없을 때 HTML에 불러오면서 undefined이기 때문에 오류가 생김
