@@ -1,2 +1,3 @@
 import "./style.css";
-import "./add.ts";
+import "./addTodos.ts";
+import "./showTodos.ts";

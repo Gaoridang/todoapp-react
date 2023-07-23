@@ -1,9 +1,7 @@
-import { getDatabase, ref, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
-import { nanoid } from "nanoid";
-import { format } from "date-fns";
+import { get, getDatabase, ref } from "firebase/database";
 
-interface TodoType {
+export interface TodoType {
   title: string;
   description?: string;
   done?: boolean;
@@ -24,24 +22,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
+export const db = getDatabase(app);
 
-function addTodo({
-  todoID = nanoid(),
-  done = false,
-  title,
-  date = new Date(),
-  description = "",
-  priority = 4,
-}: TodoType) {
-  const db = getDatabase(app);
-  set(ref(db, "todos/" + todoID), {
-    title,
-    description,
-    done,
-    date: format(date, "yyyy.MM.dd"),
-    priority,
-  });
-}
-
-export { addTodo };
+export const fetchAllTodos = async () => {
+  const todoRef = ref(db, "todos");
+  const snapshot = await get(todoRef);
+  return snapshot.val();
+};
