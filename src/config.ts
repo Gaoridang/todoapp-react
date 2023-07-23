@@ -1,11 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { get, getDatabase, ref } from "firebase/database";
+import { get, getDatabase, orderByChild, query, ref } from "firebase/database";
 
 export interface TodoType {
   title: string;
   description?: string;
   done?: boolean;
-  date?: Date;
+  date: number;
   priority?: 1 | 2 | 3 | 4;
   todoID?: string;
 }
@@ -25,6 +25,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 export const todoRef = ref(db, "todos");
+export const latestTodoQuery = query(ref(db, "todos/"), orderByChild("date"));
 
 export const fetchAllTodos = async () => {
   const snapshot = await get(todoRef);

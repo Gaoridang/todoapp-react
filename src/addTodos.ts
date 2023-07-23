@@ -1,24 +1,26 @@
-import { TodoType, db } from "./config";
+import { db } from "./config";
 import { nanoid } from "nanoid";
-import { format } from "date-fns";
 import { ref, set } from "firebase/database";
+
+interface addTodoParams {
+  title: string;
+  description?: string;
+  priority?: 1 | 2 | 3 | 4;
+}
 
 const titleInput = document.getElementById("todo-title") as HTMLInputElement;
 const todoForm = document.getElementById("todo-form") as HTMLFormElement;
 
-const addTodo = ({
-  todoID = nanoid(),
-  done = false,
-  title,
-  date = new Date(),
-  description = "",
-  priority = 4,
-}: TodoType) => {
+const addTodo = ({ title, description = "", priority = 4 }: addTodoParams) => {
+  const todoID = nanoid();
+  const done = false;
+  const date = Date.now();
+
   set(ref(db, "todos/" + todoID), {
     title,
     description,
     done,
-    date: format(date, "yyyy.MM.dd HH:mm:ss"),
+    date,
     priority,
   });
 };
