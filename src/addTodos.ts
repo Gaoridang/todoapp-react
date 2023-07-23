@@ -29,4 +29,5 @@ todoForm?.addEventListener("submit", (e: SubmitEvent) => {
   const title = titleInput?.value;
 
   addTodo({ title });
+  titleInput.value = "";
 });

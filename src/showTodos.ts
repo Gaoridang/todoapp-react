@@ -1,7 +1,9 @@
-import { onValue, ref, remove } from "firebase/database";
-import { TodoType, db, todoRef } from "./config";
+import { onValue } from "firebase/database";
+import { TodoType, todoRef } from "./config";
 
-const todoContainer = document.getElementById("todo-list") as HTMLUListElement;
+export const todoContainer = document.getElementById(
+  "todo-list"
+) as HTMLUListElement;
 
 onValue(todoRef, (snapshot) => {
   const todosObject = snapshot.val();
@@ -21,17 +23,4 @@ onValue(todoRef, (snapshot) => {
     .join("");
 
   todoContainer.innerHTML = todosHTML;
-});
-
-todoContainer.addEventListener("click", (e: MouseEvent) => {
-  const target = e.target as HTMLElement;
-
-  if (target.classList.contains("todo-delete")) {
-    const todoID = target.getAttribute("data-id");
-
-    if (todoID) {
-      const todoRef = ref(db, "todos/" + todoID);
-      remove(todoRef);
-    }
-  }
 });
