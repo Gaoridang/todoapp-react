@@ -19,10 +19,12 @@ onValue(latestTodoQuery, (snapshot) => {
       const date = format(new Date(todo.date), "yyyy.MM.dd HH:mm:ss");
       return `
           <li id="todo-item">
-            <p>${todo.title}</p>
-            <p>${todo.description}</p>
-            <p>${date}</p>
-            <button class="todo-delete" data-id=${todoID}>X</button>
+            <div class="todo-main">
+              <p class="todo-title">${todo.title}</p>
+              <p class="todo-desc">${todo.description}</p>
+            </div>
+            <p class="todo-date">${date}</p>
+            <button class="todo-delete-btn" data-id=${todoID}>X</button>
           </li>
         `;
     })

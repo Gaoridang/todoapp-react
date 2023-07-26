@@ -1,5 +1,4 @@
-import "./style.css";
+import "./styles/style.css";
 import "./addTodos.ts";
 import "./showTodos.ts";
 import "./deleteTodo.ts";
-import "./order.ts";

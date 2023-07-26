@@ -5,7 +5,7 @@ import { db } from "./config";
 todoContainer.addEventListener("click", (e: MouseEvent) => {
   const target = e.target as HTMLElement;
 
-  if (target.classList.contains("todo-delete")) {
+  if (target.classList.contains("todo-delete-btn")) {
     const todoID = target.getAttribute("data-id");
 
     if (todoID) {

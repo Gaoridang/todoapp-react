@@ -10,6 +10,7 @@ export interface TodoType {
   todoID?: string;
 }
 
+// .env 로 옮기고 .gitignore에 추가하기 (원래 제일 처음 해야함)
 const firebaseConfig = {
   apiKey: "AIzaSyDqqZ-0PBmpLKwd8xe724O_OsRRMBt4tC4",
   authDomain: "todoapp-5edc0.firebaseapp.com",
@@ -33,3 +34,4 @@ export const fetchAllTodos = async () => {
 };
 
 // 리스트가 없을 때 HTML에 불러오면서 undefined이기 때문에 오류가 생김
+// 빈 거 하나 만들어주거나 0이 아닐 때 조건 걸어주면 될 듯
