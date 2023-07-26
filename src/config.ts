@@ -3,7 +3,7 @@ import { get, getDatabase, orderByChild, query, ref } from "firebase/database";
 
 export interface TodoType {
   title: string;
-  description?: string;
+  content?: string;
   done?: boolean;
   date: number;
   priority?: 1 | 2 | 3 | 4;

@@ -9,9 +9,11 @@
   <body>
     <div id="app">
       <form id="todo-form">
-        <input type="text" id="todo-title" />
-        <textarea name="todo-desc" id="todo-desc" cols="30" rows="5"></textarea>
-        <input type="submit" value="Add todo" />
+        <div contenteditable="true" id="todo-title" class="input"></div>
+        <div contenteditable="true" id="todo-content" class="input"></div>
+        <input type="hidden" id="hidden-title" />
+        <input type="hidden" id="hidden-content" />
+        <input type="submit" value="ADD TODO" />
       </form>
       <ul id="todo-list"></ul>
     </div>

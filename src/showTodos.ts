@@ -16,14 +16,14 @@ onValue(latestTodoQuery, (snapshot) => {
   const todosHTML = todosArray
     .map(([todoID, todoData]) => {
       const todo = todoData as TodoType;
-      const date = format(new Date(todo.date), "yyyy.MM.dd HH:mm:ss");
+      const date = format(new Date(todo.date), `yyyy년 MM월 dd일 HH:mm`);
       return `
           <li id="todo-item">
             <div class="todo-main">
-              <p class="todo-title">${todo.title}</p>
-              <p class="todo-desc">${todo.description}</p>
+              <h2 class="todo-title">${todo.title}</h2>
+              <p class="todo-content">${todo.content || ""}</p>
             </div>
-            <p class="todo-date">${date}</p>
+            <span class="todo-date">${date}</span>
             <button class="todo-delete-btn" data-id=${todoID}>X</button>
           </li>
         `;
