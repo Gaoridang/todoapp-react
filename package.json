@@ -15,6 +15,7 @@
   "dependencies": {
     "date-fns": "^2.30.0",
     "firebase": "^10.1.0",
-    "nanoid": "^4.0.2"
+    "nanoid": "^4.0.2",
+    "sass": "^1.64.1"
   }
 }
