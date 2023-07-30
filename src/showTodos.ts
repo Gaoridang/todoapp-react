@@ -35,6 +35,7 @@ onValue(latestTodoQuery, (snapshot) => {
             <div class="todo-sub">
               <span class="todo-date">${date}</span>
               <div>
+                <div class="priority priority-${todo.priority}"></div>
                 <button class="todo-check-btn" data-id=${todoID}><i class="fa-solid fa-check"></i></button>
                 <button class="todo-edit-btn" data-id=${todoID}><i class="fa-regular fa-pen-to-square"></i></button>
                 <button class="todo-delete-btn" data-id=${todoID}><i class="fa-solid fa-x"></i></button>

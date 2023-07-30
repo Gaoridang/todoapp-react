@@ -123,8 +123,35 @@
       div.todo-sub {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
         width: 100%;
+
+        div {
+          display: flex;
+
+          .priority {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            margin: 5px;
+          }
+
+          .priority-1 {
+            background-color: #ff4d4d;
+          }
+
+          .priority-2 {
+            background-color: #fe8856;
+          }
+
+          .priority-3 {
+            background-color: #3cd57a;
+          }
+
+          .priority-4 {
+            background-color: #3976e0;
+          }
+        }
       }
 
       h2 {

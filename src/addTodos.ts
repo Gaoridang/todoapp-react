@@ -5,7 +5,7 @@ import { ref, set } from "firebase/database";
 interface addTodoParams {
   title: string;
   content?: string;
-  priority?: 1 | 2 | 3 | 4;
+  priority?: string;
 }
 
 const titleInput = document.getElementById("todo-title") as HTMLInputElement;
@@ -14,7 +14,15 @@ const contentInput = document.getElementById(
 ) as HTMLInputElement;
 const addForm = document.getElementById("add-form") as HTMLFormElement;
 
-const addTodo = ({ title, content = "", priority = 4 }: addTodoParams) => {
+const addTodo = ({ title, content = "", priority = "4" }: addTodoParams) => {
+  const priorities = document.querySelectorAll('input[type="radio"]');
+  priorities.forEach((item) => {
+    const radio = item as HTMLInputElement;
+    if (radio.checked) {
+      priority = radio.value;
+    }
+  });
+
   const todoID = nanoid();
   const done = false;
   const date = Date.now();

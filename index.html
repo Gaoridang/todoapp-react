@@ -23,10 +23,10 @@
               <input type="text" id="todo-content" placeholder="내용" />
               <div>
                 <button type="submit"><i class="fa-solid fa-plus"></i></button>
-                <input type="radio" name="priority" id="priority1" value="1" />
-                <input type="radio" name="priority" id="priority2" value="2" />
-                <input type="radio" name="priority" id="priority3" value="3" />
-                <input type="radio" name="priority" id="priority4" value="4" />
+                <input type="radio" name="priority" value="1" />
+                <input type="radio" name="priority" value="2" />
+                <input type="radio" name="priority" value="3" />
+                <input type="radio" name="priority" value="4" />
               </div>
             </form>
             <form id="edit-form" class="todo-form" style="display: none">
@@ -37,7 +37,9 @@
                 autofocus
               />
               <input type="text" id="edit-todo-content" placeholder="내용" />
-              <input type="submit" value="EDIT TODO" />
+              <div>
+                <button type="submit"><i class="fa-solid fa-check"></i></button>
+              </div>
             </form>
           </div>
         </div>
