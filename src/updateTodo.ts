@@ -10,7 +10,6 @@ const titleInput = document.getElementById(
 const contentInput = document.getElementById(
   "edit-todo-content"
 ) as HTMLInputElement;
-const todoItems = document.querySelectorAll(".todo-item");
 
 let currentEditingId = "";
 
@@ -60,7 +59,24 @@ editForm.addEventListener("submit", async (e) => {
   currentEditingId = "";
 });
 
-// 제목이나 특정 영역 클릭 시 완료 및 color 채워지는 애니메이션
-todoItems.forEach((item) => {
-  item.addEventListener("click", () => {});
+// check button 클릭 시 완료 및 color 채워지는 애니메이션
+todoContainer.addEventListener("click", async (e) => {
+  const target = e.target as HTMLElement;
+
+  const checkBtn = target.closest(".todo-check-btn");
+
+  if (checkBtn) {
+    const todoID = checkBtn.getAttribute("data-id");
+
+    if (todoID) {
+      const todoRef = ref(db, "todos/" + todoID);
+
+      await update(todoRef, {
+        done: true,
+      });
+
+      const todoItem = checkBtn.closest(".todo-item");
+      todoItem?.classList.add("completed");
+    }
+  }
 });
