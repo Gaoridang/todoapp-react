@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { get, getDatabase, orderByChild, query, ref } from "firebase/database";
+import { getDatabase, orderByChild, query, ref } from "firebase/database";
 
 export interface TodoType {
   title: string;
@@ -27,11 +27,6 @@ export const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 export const todoRef = ref(db, "todos");
 export const latestTodoQuery = query(ref(db, "todos/"), orderByChild("date"));
-
-export const fetchAllTodos = async () => {
-  const snapshot = await get(todoRef);
-  return snapshot.val();
-};
 
 // 리스트가 없을 때 HTML에 불러오면서 undefined이기 때문에 오류가 생김
 // 빈 거 하나 만들어주거나 0이 아닐 때 조건 걸어주면 될 듯

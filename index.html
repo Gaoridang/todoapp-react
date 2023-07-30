@@ -3,19 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
   </head>
   <body>
     <div id="app">
-      <form id="todo-form">
-        <div contenteditable="true" id="todo-title" class="input"></div>
-        <div contenteditable="true" id="todo-content" class="input"></div>
-        <input type="hidden" id="hidden-title" />
-        <input type="hidden" id="hidden-content" />
-        <input type="submit" value="ADD TODO" />
-      </form>
-      <ul id="todo-list"></ul>
+      <div class="container">
+        <div class="form-container-wrapper">
+          <div class="form-container">
+            <form id="add-form" class="todo-form">
+              <input type="text" id="todo-title" placeholder="제목" autofocus />
+              <input type="text" id="todo-content" placeholder="내용" />
+              <div>
+                <button type="submit"><i class="fa-solid fa-plus"></i></button>
+                <input type="radio" name="priority" id="priority1" value="1" />
+                <input type="radio" name="priority" id="priority2" value="2" />
+                <input type="radio" name="priority" id="priority3" value="3" />
+                <input type="radio" name="priority" id="priority4" value="4" />
+              </div>
+            </form>
+            <form id="edit-form" class="todo-form" style="display: none">
+              <input
+                type="text"
+                id="edit-todo-title"
+                placeholder="제목"
+                autofocus
+              />
+              <input type="text" id="edit-todo-content" placeholder="내용" />
+              <input type="submit" value="EDIT TODO" />
+            </form>
+          </div>
+        </div>
+        <div class="todo-container">
+          <ul id="todo-list"></ul>
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

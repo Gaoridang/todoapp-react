@@ -4,13 +4,14 @@ import { db } from "./config";
 
 todoContainer.addEventListener("click", (e: MouseEvent) => {
   const target = e.target as HTMLElement;
+  const deleteBtn = target.closest(".todo-delete-btn");
 
-  if (target.classList.contains("todo-delete-btn")) {
-    const todoID = target.getAttribute("data-id");
+  if (deleteBtn) {
+    const todoID = deleteBtn.getAttribute("data-id");
 
     if (todoID) {
       const todoRef = ref(db, "todos/" + todoID);
-      remove(todoRef);
+      remove(todoRef).catch((err) => console.log(err));
     }
   }
 });

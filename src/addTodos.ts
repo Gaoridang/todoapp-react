@@ -8,15 +8,11 @@ interface addTodoParams {
   priority?: 1 | 2 | 3 | 4;
 }
 
-const hiddenInputTitle = document.getElementById(
-  "hidden-title"
+const titleInput = document.getElementById("todo-title") as HTMLInputElement;
+const contentInput = document.getElementById(
+  "todo-content"
 ) as HTMLInputElement;
-const inputTitle = document.getElementById("todo-title") as HTMLDivElement;
-const hiddenInputContent = document.getElementById(
-  "hidden-content"
-) as HTMLInputElement;
-const inputContent = document.getElementById("todo-content") as HTMLDivElement;
-const todoForm = document.getElementById("todo-form") as HTMLFormElement;
+const addForm = document.getElementById("add-form") as HTMLFormElement;
 
 const addTodo = ({ title, content = "", priority = 4 }: addTodoParams) => {
   const todoID = nanoid();
@@ -32,16 +28,16 @@ const addTodo = ({ title, content = "", priority = 4 }: addTodoParams) => {
   });
 };
 
-todoForm?.addEventListener("submit", (e: SubmitEvent) => {
+addForm?.addEventListener("submit", (e: SubmitEvent) => {
   e.preventDefault();
 
-  hiddenInputTitle.value = inputTitle?.innerText || "";
-  hiddenInputContent.value = inputContent?.innerText || "";
+  const title = titleInput.value;
+  const content = contentInput.value;
 
-  const title = hiddenInputTitle.value;
-  const content = hiddenInputContent.value;
+  if (title) {
+    addTodo({ title, content });
+  }
 
-  addTodo({ title, content });
-  inputTitle.innerText = "";
-  inputContent.innerText = "";
+  titleInput.value = "";
+  contentInput.value = "";
 });
