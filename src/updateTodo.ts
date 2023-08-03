@@ -71,8 +71,11 @@ todoContainer.addEventListener("click", async (e) => {
     if (todoID) {
       const todoRef = ref(db, "todos/" + todoID);
 
+      const snapshot = await get(todoRef);
+      const todoData = snapshot.val() as TodoType;
+
       await update(todoRef, {
-        done: true,
+        done: !todoData.done,
       });
 
       const todoItem = checkBtn.closest(".todo-item");
